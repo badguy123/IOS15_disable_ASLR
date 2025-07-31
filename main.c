@@ -189,7 +189,7 @@ void mem_patch(const char *cmd, char *args){
 
     struct mach_header_64* hdr = xnu_header();
     xnu_pf_range_t* text_exec_range = xnu_pf_section(hdr, "__TEXT_EXEC", "__text");
-    printf("aslr %llx\n", text_exec_range->device_base + 0x4C56E4);
+    // printf("aslr %llx\n", text_exec_range->device_base + 0x4C56E4);
     //FF6700A9      stp xzr, x25, [sp]
     xnu_pf_maskmatch(text_exec_patchset, "disable_aslr", matches, masks,
                    sizeof(matches) / sizeof(uint64_t), false,
@@ -205,7 +205,7 @@ void mem_patch(const char *cmd, char *args){
 
 void module_entry(){
 	command_register("dis", "disassemble", disassemble);
-	command_register("kfind", "kfind", kfind);
+	// command_register("kfind", "kfind", kfind);
     command_register("hd", "hexdump", hexdump0);
     command_register("mpp", "mem patch", mem_patch);
     return;
